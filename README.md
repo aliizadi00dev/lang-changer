@@ -1,4 +1,4 @@
-# DNS Changer (for Iranian developers)
+# Language Changer (change current keyboard layout on X11)
 
 ![](/screenshots/free-palestine.png)
 
