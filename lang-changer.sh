@@ -237,6 +237,7 @@ function set_lang_layout() {
 
         else 
             # User configs should be temporary
+            setxkbmap -option ""
             setxkbmap -layout "${primary_lang},${secondary_lang}" -option "${lang_toggler}"
 
             if [[ $? -eq 0 ]];then 
@@ -284,11 +285,17 @@ function success_message() {
 
     echo "${PURPLE}"
     if [[ $1 == "localectl" ]]; then 
+        echo "$1 status: "
         localectl status
+        echo ""
+        echo "${BLUE}==> ▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲ ${PURPLE}"
+        echo "${YELLOW}==> NOTE:YOU NEED TO RESTART X11 (OR LOGOUT AND LOGIN AGAIN)${PURPLE}"
+        echo "${BLUE}==> ▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲▼▲ ${PURPLE}"
     elif [[ $1 == "setxkbmap" ]]; then 
+        echo "$1 -query: "
         setxkbmap -query
     fi
-    echo "${NO_COLOR}"
+    echo -n "${NO_COLOR}"
 }
 
 function failed_message() {
@@ -296,11 +303,13 @@ function failed_message() {
     echo "${RED}Your new configs failure to added.${NO_COLOR}"
     echo "${PURPLE}"
     if [[ $1 == "localectl" ]]; then 
+        echo "$1 status: "
         localectl status
     elif [[ $1 == "setxkbmap" ]]; then 
+        echo "$1 -query: "
         setxkbmap -query
     fi
-    echo "${NO_COLOR}"
+    echo -n "${NO_COLOR}"
 }
 
 main 
